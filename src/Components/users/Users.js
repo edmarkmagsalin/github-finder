@@ -13,7 +13,7 @@ const Users = () => {
         return <Spinner />
     } else {
         return (
-            <div style={UsersStyle}>
+            <div style={UsersStyle}>betlog
                 {users.map(user => (
                     <UserItem key={user.id} user={user} />
                 ))}
