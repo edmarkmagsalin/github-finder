@@ -1,44 +1,41 @@
-import React, { Component } from 'react'
+import React, { useState, useContext } from 'react'
 import PropTypes from 'prop-types'
+import GithubContext from '../../context/github/githubContext'
 
-export class Search extends Component {
-    state = {
-        username: '',
-    }
+const Search = ({ setAlert }) => {
 
-    static propTypes = {
-      searchUsers: PropTypes.func.isRequired,
-      clearUsers: PropTypes.func.isRequired,
-      showClear: PropTypes.bool.isRequired,
-      setAlert: PropTypes.func.isRequired,
-    }
+    const githubContext = useContext(GithubContext);
 
-    onChange = e => {
-        this.setState({ [e.target.name]: e.target.value }) //GET the value of the input, and pass it to the 'state username'
-    }
+    const [query, setQuery] = useState('');
 
-    onSubmit = e => {
+    const onSubmit = e => {
         e.preventDefault();
-        if(this.state.username === ''){
-            this.props.setAlert('Please enter something', 'light')
+        if(query === ''){
+            setAlert('Please enter something', 'light')
         } else{
-            this.props.searchUsers(this.state.username) //pass value of 'state username' to searchUsers property
+            githubContext.searchUsers(query) //pass value of 'state query' to searchUsers property
         }
         
     }
-    render() {
-        const {clearUsers, showClear} = this.props;
-        return (
-            <div>
-                <form onSubmit={this.onSubmit} className="form">
-                    <input type="text" name="username" placeholder="Search users" value={this.state.text} onChange={this.onChange} />
-                    <input type="submit" value="Search" className="btn btn-dark btn-block" />
-                </form>
-                {showClear && <button className="btn btn-light btn-block" onClick={clearUsers}>Clear</button>}
-                
-            </div>
-        )
+
+    const onChange = e => {
+        setQuery(e.target.value) //GET the value of the input, and pass it to the 'state query'
     }
+
+    return (
+        <div>
+            <form onSubmit={onSubmit} className="form">
+                <input type="text" name="query" placeholder="Search users" value={query} onChange={onChange} />
+                <input type="submit" value="Search" className="btn btn-dark btn-block" />
+            </form>
+            {githubContext.users.length > 0 && <button className="btn btn-light btn-block" onClick={githubContext.clearUsers}>Clear</button>}
+            
+        </div>
+    )
+}
+
+Search.propTypes = {
+    setAlert: PropTypes.func.isRequired,
 }
 
 export default Search
