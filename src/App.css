@@ -196,6 +196,18 @@ img {
   grid-gap: 1rem;
 }
 
+.grid-responsive-20 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  grid-gap: 1rem;
+}
+
+.grid-responsive-15 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  grid-gap: 1rem;
+}
+
 .btn {
   display: inline-block;
   background: var(--light-color);

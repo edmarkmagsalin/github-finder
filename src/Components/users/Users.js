@@ -13,19 +13,13 @@ const Users = () => {
         return <Spinner />
     } else {
         return (
-            <div style={UsersStyle}>
+            <div className="grid-responsive-15">
                 {users.map(user => (
                     <UserItem key={user.id} user={user} />
                 ))}
             </div>
         )
     }
-}
-
-const UsersStyle = {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(3, 1fr)',
-    gridGap: '1rem'
 }
 
 export default Users;
