@@ -53,18 +53,18 @@ const User = ({ match }) => {
                     <a href={html_url} target="_blank" rel="noopener noreferrer" className='btn btn-dark my-1'>Visit GitHub Profile</a>
                     <ul>
                         <li>{login && <Fragment> Username: {login}</Fragment>}</li>
-                        <li>{blog && <Fragment> Website: <a href={blog} target="_blank" rel="noopener noreferrer">{blog}</a></Fragment>}</li>
+                        <li>{blog && <Fragment> Website: {blog}</Fragment>}</li>
                     </ul>
                 </div>
             </div>
             <div className="card text-center">
-                <div className="badge badge-primary">
+                <div className="badge badge-success">
                     Followers: {followers}
                 </div>
-                <div className="badge badge-success">
+                <div className="badge badge-light">
                     Following: {following}
                 </div>
-                <div className="badge badge-light">
+                <div className="badge badge-danger">
                     Public Repos: {public_repos}
                 </div>
                 <div className="badge badge-dark">
