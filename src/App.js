@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Navbar from './Components/layout/Navbar';
 import Alert from './Components/layout/Alert';
 import User from './Components/users/User';
@@ -13,23 +13,22 @@ import './App.css';
 const App = () => {
   return (
     <GithubState>
-    <AlertState>
-    <Router>
-      <div className="App">
-        <Navbar />
-        <div className="container">
-          <Alert />
-          <Switch>
-            <Route exact path='/' component={Home} />
-            <Route exact path='/about' component={About} />
-            <Route exact path='/user/:login' component={User} />
-            <Route component={NotFound} />
-          </Switch>
-          
-        </div>
-      </div>
-    </Router>
-    </AlertState>
+      <AlertState>
+        <BrowserRouter>
+          <div className="App">
+            <Navbar />
+            <div className="container">
+              <Alert />
+              <Routes>
+                <Route path='/' element={<Home />} />
+                <Route path='/about' element={<About />} />
+                <Route path='/user/:id' element={<User />} />
+                <Route path='*' element={<NotFound />}/>
+              </Routes>
+            </div>
+          </div>
+        </BrowserRouter>
+      </AlertState>
     </GithubState>
   )
 }
